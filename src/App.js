@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Logout from "./components/LogOut";
 import User from "./components/User";
+import LinkPlaid from "./components/LinkPlaid";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/user" element={<User />} />
+          <Route path="/link_plaid" element={<LinkPlaid />} />
         </Routes>
       </div>
     </Router>
