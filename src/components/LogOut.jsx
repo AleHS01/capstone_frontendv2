@@ -1,38 +1,34 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Typography, Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { logoutUserThunk } from "../redux/user/user.action";
 
 const Logout = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    try {
+      // Simulating a logout request with a delay
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await dispatch(logoutUserThunk());
+      console.log("Logout successful");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const handleLogout = async () => {
-      try {
-        // Simulating a logout request with a delay
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        console.log("Logout successful");
-
-        // Redirect to home page after logout
-        navigate("/");
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     handleLogout();
   }, []);
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <div>
       <Typography variant="h1">Logging out</Typography>
       <Typography variant="body1">Logout successful</Typography>
-      <Button
-        variant="contained"
-        onClick={() => navigate("/")}
-        style={{ marginTop: "1rem" }}
-      >
+      <Button variant="contained" onClick={() => navigate("/")}>
         Go Back Home
       </Button>
     </div>

@@ -25,7 +25,7 @@ const Home = () => {
         gap: "16px",
       }}
     >
-      <h1>Welcome to Home Page</h1>
+      <h1>Welcome to Finance Mate</h1>
       <Link to="/login">
         <Button variant="contained" color="primary">
           Login
