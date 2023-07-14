@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   const signUp = async () => {
     try {
@@ -22,6 +24,10 @@ const SignUp = () => {
         }
       );
       console.log("Response: ", response);
+
+      setPassword("");
+      setUsername("");
+      navigate("/user");
     } catch (error) {
       console.log(error);
     }

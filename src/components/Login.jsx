@@ -1,25 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginUserThunk } from "../redux/user/user.action";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const login = async () => {
+  const dispatch = useDispatch(); // Get the dispatch function
+  const navigate = useNavigate();
+  const handleLogin = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/login",
-        {
-          username: username,
-          password: password,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-      console.log("Response: ", response);
+      await dispatch(loginUserThunk({ username, password })); // Dispatch the login thunk action
+      setPassword("");
+      setUsername("");
+      navigate("/user");
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +46,7 @@ const Login = () => {
       <Button
         variant="contained"
         color="primary"
-        onClick={login}
+        onClick={handleLogin} // Call the handleLogin function
         style={{ marginBottom: "1rem" }}
       >
         Submit
