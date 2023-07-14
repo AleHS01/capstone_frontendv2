@@ -44,6 +44,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserThunk } from "../redux/user/user.action";
 import { logoutUserThunk } from "../redux/user/user.action";
 import { Link } from "react-router-dom";
+import LinkPlaid from "./LinkPlaid";
 
 const User = () => {
   const navigate = useNavigate();
@@ -85,6 +86,9 @@ const User = () => {
         <div>
           <Typography variant="h1">Welcome {user.username}!!!</Typography>
           <Typography variant="h2">Email: {user.email}</Typography>
+          <Link to="/link_plaid">
+            <button>Connect Bank Account</button>
+          </Link>
         </div>
       ) : (
         <div>
